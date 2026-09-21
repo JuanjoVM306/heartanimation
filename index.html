@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>I Love You - Heart Animation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
+      background-color: #000;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* Escalador para adaptarse a pantallas de celulares verticales */
+    .viewport-container {
+      width: 100vw;
+      height: 100dvh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .heart-scaler {
+      width: 450px;
+      height: 450px;
+      transform-origin: center center;
+      /* Ajuste automático según el tamaño vertical del smartphone */
+      transform: scale(min(calc(85vw / 450), calc(65vh / 450)));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #ui {
+      position: relative;
+      width: 450px;
+      height: 450px;
+    }
+
+    #ui .love {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -225px 0 0 -225px;
+      --i: 1;
+    }
+
+    #ui .love_horizontal {
+      animation: horizontal 10s infinite alternate ease-in-out;
+      animation-delay: calc(var(--i) * -300ms);
+    }
+
+    #ui .love_vertical {
+      animation: vertical 20s infinite linear;
+      animation-delay: calc(var(--i) * -300ms);
+    }
+
+    #ui .love_word {
+      color: #ea80b0;
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      white-space: nowrap;
+      text-shadow: 0 0 8px #fff, 0 0 18px #ea80b0;
+      transform: translateY(-100%) rotate(-30deg);
+      user-select: none;
+    }
+
+    /* Recorrido horizontal */
+    @keyframes horizontal {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(450px);
+      }
+    }
+
+    /* Keyframes exactos del contorno del corazón */
+    @keyframes vertical {
+      0% { transform: translateY(180px); }
+      10% { transform: translateY(45px); }
+      15% { transform: translateY(4.5px); }
+      18% { transform: translateY(0); }
+      20% { transform: translateY(4.5px); }
+      22% { transform: translateY(34.61538px); }
+      24% { transform: translateY(64.28571px); }
+      25% { transform: translateY(112.5px); }
+      26% { transform: translateY(64.28571px); }
+      28% { transform: translateY(34.61538px); }
+      30% { transform: translateY(4.5px); }
+      32% { transform: translateY(0); }
+      35% { transform: translateY(4.5px); }
+      40% { transform: translateY(45px); }
+      50% { transform: translateY(180px); }
+      71% { transform: translateY(428.57143px); }
+      72.5% { transform: translateY(441.17647px); }
+      75% { transform: translateY(450px); }
+      77.5% { transform: translateY(441.17647px); }
+      79% { transform: translateY(428.57143px); }
+      100% { transform: translateY(180px); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="viewport-container">
+    <div class="heart-scaler">
+      <div id="ui"></div>
+    </div>
+  </div>
+
+  <script>
+    const ui = document.getElementById("ui");
+    const totalItems = 100;
+
+    for (let i = 1; i <= totalItems; i++) {
+      const love = document.createElement("div");
+      love.className = "love";
+      love.style.setProperty("--i", i);
+      love.innerHTML = `
+        <div class="love_horizontal">
+          <div class="love_vertical">
+            <div class="love_word">I love you</div>
+          </div>
+        </div>
+      `;
+      ui.appendChild(love);
+    }
+  </script>
+</body>
+</html>
