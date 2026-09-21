@@ -22,7 +22,6 @@
       font-family: system-ui, -apple-system, sans-serif;
     }
 
-    /* El contenedor principal ocupa toda la pantalla */
     .viewport-container {
       width: 100vw;
       height: 100dvh;
@@ -32,15 +31,15 @@
       position: relative;
     }
 
-    /* Escala el lienzo al tamaño de la pantalla del celular */
+    /* Escalador ajustado para el centro geométrico de la pantalla */
     .heart-scaler {
       width: 350px;
       height: 350px;
       position: absolute;
       top: 50%;
       left: 50%;
-      /* Escala reducida para que quepa completo y margen libre alrededor */
-      transform: translate(-50%, -50%) scale(calc(min(40vw, 40vh) / 350));
+      /* Se agrega un ligero offset en Y (-5px) para compensar el peso visual del vértice inferior */
+      transform: translate(-50%, calc(-50% - 5px)) scale(calc(min(80vw, 55vh) / 350));
       transform-origin: center center;
       display: flex;
       justify-content: center;
@@ -57,8 +56,7 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      /* Centrado perfecto del punto de origen */
-      transform: translate(-50%, -50%);
+      transform: translate(0, 0);
       --i: 1;
     }
 
@@ -83,7 +81,6 @@
       user-select: none;
     }
 
-    /* Recorrido horizontal simétrico de izquierda (-175px) a derecha (175px) */
     @keyframes horizontal {
       from {
         transform: translateX(-175px);
@@ -93,7 +90,6 @@
       }
     }
 
-    /* Keyframes del contorno adaptados al rango de 350px de alto */
     @keyframes vertical {
       0% { transform: translateY(-30px); }
       10% { transform: translateY(-135px); }
